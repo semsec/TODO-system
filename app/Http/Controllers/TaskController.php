@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -64,22 +65,21 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.edit', compact('task'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task): \Illuminate\Contracts\Foundation\Application|RedirectResponse|Redirector|Application
     {
-        //
-    }
+        $validated = $request->validated();
+        $task->update([
+           'user_id' => Auth::id(),
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
-    {
-        //
+        return redirect(route('tasks.index'));
     }
 }
