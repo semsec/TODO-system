@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $tasks = Task::where('user_id', auth()->id())->get();
         return view('tasks.index', compact('tasks'));
@@ -21,7 +27,7 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('tasks.create');
     }
@@ -29,10 +35,9 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TaskRequest $request)
+    public function store(TaskRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-//        dd($validated);
         Task::create([
             'user_id' => Auth::id(),
             'title' => $validated['title'],
@@ -47,7 +52,11 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        if ($task->user_id !== auth()->id()) {
+            abort(ResponseAlias::HTTP_NOT_FOUND);
+        }
+
+        return view('tasks.show', compact('task'));
     }
 
     /**
