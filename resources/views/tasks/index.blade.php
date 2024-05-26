@@ -89,12 +89,11 @@
             </select>
             <label for="itemsPerPage">Items per page:</label>
             <select id="itemsPerPage" name="itemsPerPage" onchange="this.form.submit()">
-                <option>--------</option>
+                <option value="5">--------</option>
                 <option value="3" {{ request('itemsPerPage') == 3 ? 'selected' : '' }}>3</option>
                 <option value="5" {{ request('itemsPerPage') == 5 ? 'selected' : '' }}>5</option>
                 <option value="10" {{ request('itemsPerPage') == 10 ? 'selected' : '' }}>10</option>
             </select>
-            <input type="hidden" name="itemsPerPage" value="{{ request('itemsPerPage', 5) }}">
         </div>
     </form>
     <table>
