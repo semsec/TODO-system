@@ -27,12 +27,14 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>status</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td>{{ $task->title }}</td>
                 <td>{{ $task->description }}</td>
+                <td>{{ $task->status }}</td>
             </tr>
         </tbody>
     </table>

@@ -27,6 +27,7 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>status</th>
         </tr>
         </thead>
         <tbody>
@@ -34,10 +35,20 @@
             <tr>
                 <td>{{ $task->title }}</td>
                 <td>{{ $task->description }}</td>
+                <td>{{ $task->status }}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    <div>
+        <label for="filter">Filter Tasks:</label>
+        <select id="filter" name="filter">
+            <option value="all">All Tasks</option>
+            <option value="completed">Completed Tasks</option>
+            <option value="incomplete">Incomplete Tasks</option>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </div>
 </div>
 </body>
 </html>

@@ -8,8 +8,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -75,9 +73,10 @@ class TaskController extends Controller
     {
         $validated = $request->validated();
         $task->update([
-           'user_id' => Auth::id(),
+            'user_id' => Auth::id(),
             'title' => $validated['title'],
             'description' => $validated['description'],
+            'status' => $validated['status'],
         ]);
 
         return redirect(route('tasks.index'));

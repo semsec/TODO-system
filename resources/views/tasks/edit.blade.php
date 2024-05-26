@@ -20,6 +20,14 @@
         <textarea id="description" name="description">{{$task->description}}</textarea>
     </div>
 
+    <div>
+        <label for="status">Status:</label><br>
+        <select id="status" name="status">
+            <option value="complete">Complete</option>
+            <option value="incomplete">Incomplete</option>
+        </select>
+    </div>
+
     <button type="submit">Update Task</button>
 </form>
 </body>
