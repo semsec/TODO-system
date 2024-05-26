@@ -19,6 +19,7 @@ class TaskController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        $this->authorize('viewAny', Task::class);
         $tasks = Task::where('user_id', auth()->id())->get();
         return view('tasks.index', compact('tasks'));
     }
