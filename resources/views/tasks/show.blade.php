@@ -27,6 +27,7 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>Created_at</th>
             <th>status</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
             <tr>
                 <td>{{ $task->title }}</td>
                 <td>{{ $task->description }}</td>
+                <td>{{ $task->created_at }}</td>
                 <td>{{ $task->status }}</td>
             </tr>
         </tbody>
