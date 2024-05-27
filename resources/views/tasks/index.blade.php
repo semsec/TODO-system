@@ -62,17 +62,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task List</title>
     <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            color: #212529; /* Dark text color */
+            font-family: Arial, sans-serif;
+        }
         table {
             border-collapse: collapse;
             width: 50%;
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 2px;
+            padding: 8px;
             text-align: left;
         }
         th {
             background-color: #f2f2f2;
+        }
+        select {
+            background-color: #fff; /* White background for select inputs */
+            color: #212529; /* Dark text color for select inputs */
+        }
+        .pagination {
+            display: flex;
+            justify-content: left;
+            padding: 20px;
+        }
+        .pagination a, .pagination span {
+            margin: 0 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .pagination span.disabled {
+            color: #ddd;
+            cursor: not-allowed;
         }
     </style>
 </head>
